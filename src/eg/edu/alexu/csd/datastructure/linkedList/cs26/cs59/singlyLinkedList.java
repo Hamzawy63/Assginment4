@@ -14,7 +14,6 @@ public class singlyLinkedList implements ILinkedList {
 
     }
 
-
     singlyLinkedListNode head = null;
 
     public void add(int index, Object element) {

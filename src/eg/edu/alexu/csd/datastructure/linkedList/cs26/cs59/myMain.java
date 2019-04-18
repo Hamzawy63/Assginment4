@@ -9,10 +9,7 @@ public class myMain {
         list.add(11);
         list.add(1);
         list.add(100);
-
         list.print();
-
-
         System.out.println(list.size());
         System.out.println(list.contains(120));
         System.out.println(list.get(2));
