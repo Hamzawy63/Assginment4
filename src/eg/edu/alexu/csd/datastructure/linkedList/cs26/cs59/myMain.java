@@ -23,6 +23,7 @@ public class myMain {
         Polynomial poly = new Polynomial();
         poly.setPolynomial('A',a);
         System.out.println(poly.print('A'));
+        System.out.println(poly.evaluatePolynomial('A',1));
 
          }
 

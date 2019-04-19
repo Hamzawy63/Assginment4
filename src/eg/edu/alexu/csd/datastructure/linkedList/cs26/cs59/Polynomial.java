@@ -2,6 +2,8 @@ package eg.edu.alexu.csd.datastructure.linkedList.cs26.cs59;
 
 import java.awt.*;
 
+import static java.lang.Math.pow;
+
 public class Polynomial {
     singlyLinkedList A = new singlyLinkedList();
     singlyLinkedList B = new singlyLinkedList();
@@ -69,11 +71,12 @@ public class Polynomial {
     {
         if(poly == 'A')
             return evaluatePolynomial(A,value);
+
         else if (poly == 'B')
-            return evaluatePolynomial(A,value);
+            return evaluatePolynomial(B,value);
 
 
-        return evaluatePolynomial(A,value);
+        return evaluatePolynomial(C,value);
 
 
     }
@@ -88,7 +91,8 @@ public class Polynomial {
             Point term = (Point) tmp.value;
             int x = term.x; /// coeffecient
             int y = term.y; /// exponential
-            result += value*y+x;
+            result += pow(value,y)*x;
+            tmp = tmp.next;
         }
 
         return result;
