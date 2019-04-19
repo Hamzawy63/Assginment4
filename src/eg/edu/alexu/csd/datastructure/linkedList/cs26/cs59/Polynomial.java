@@ -5,9 +5,9 @@ import java.awt.*;
 import static java.lang.Math.pow;
 
 public class Polynomial {
-    singlyLinkedList A = new singlyLinkedList();
-    singlyLinkedList B = new singlyLinkedList();
-    singlyLinkedList C = new singlyLinkedList();
+    private singlyLinkedList  A = new singlyLinkedList();
+    private singlyLinkedList  B = new singlyLinkedList();
+    private  singlyLinkedList C = new singlyLinkedList();
 
     public void  setPolynomial(char poly, int[][] terms) /// not tested yet
     {
@@ -32,7 +32,6 @@ public class Polynomial {
         }
 
     }
-
     public String print(char poly)
     {
         switch (poly)
@@ -66,7 +65,6 @@ public class Polynomial {
         }
         return representation;
     }
-
     public float evaluatePolynomial(char poly, float value) /// not tested yet
     {
         if(poly == 'A')
@@ -96,6 +94,43 @@ public class Polynomial {
         }
 
         return result;
+    }
+    int[][] add(char poly1, char poly2)
+    {
+
+        return new int[2][2];
+    }
+    int[][] add(singlyLinkedList poly1, singlyLinkedList poly2)
+    {
+        return new int[2][2];
+    }
+    public int[][]  fillOnto2D(singlyLinkedList src)
+    {
+        int[][] dest =new int[1][sizeOfArr(src)];
+        singlyLinkedList.singlyLinkedListNode ptr  = src.head;
+        Point term;
+        while (ptr !=null)
+        {
+            term = (Point) ptr.value;
+            dest[0][term.y] = term.x;
+            ptr = ptr.next;
+        }
+        return dest;
+    }
+    public int sizeOfArr(singlyLinkedList list)
+    {
+        singlyLinkedList.singlyLinkedListNode tmp = list.head;
+        Point term = (Point) list.get(0);
+        int size =term.y;
+        while(tmp != null)
+        {
+            term = (Point) tmp.value;
+            if(term.y>size)
+                size = term.y;
+
+            tmp = tmp.next; //out of if
+        }
+        return size+1;
     }
 
 }
