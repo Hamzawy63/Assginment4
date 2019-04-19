@@ -28,29 +28,38 @@ public class Polynomial {
         }
 
     }
-    /**
+
     public String print(char poly)
     {
-        String representation = "";
-        representation.;
+        switch (poly)
+        {
+            case 'A':
+                return print(A);
+            case 'B':
+                return print(B);
+            case 'C':
+                return print(C);
+        }
+        return "an Error occured this character is unavailable ";
     }
     public String print(singlyLinkedList poly)
     {
         String representation = "";
-
-
         singlyLinkedList.singlyLinkedListNode tmp = poly.head;
+        int redundantVariable = 0;
         while(tmp!=null)
         {
             Point termPoint  =(Point) (tmp.value);
-            representation.;
+            representation.concat(Integer.toString(termPoint.x));
+            representation.concat("X^");
+            representation.concat(Integer.toString(termPoint.y));
+            if(redundantVariable !=poly.size()-1 )
+                representation.concat("X^");
+            redundantVariable++;
         }
-
-
-
         return representation;
     }
-    **/
+
     public float evaluatePolynomial(char poly, float value) /// not tested yet
     {
         if(poly == 'A')
@@ -65,6 +74,8 @@ public class Polynomial {
     }
     public float evaluatePolynomial(singlyLinkedList poly, float value) /// method overloading
     {
+
+
         float result=0;
         singlyLinkedList.singlyLinkedListNode tmp = poly.head; // a pointer at head node
         while(tmp!=null)
