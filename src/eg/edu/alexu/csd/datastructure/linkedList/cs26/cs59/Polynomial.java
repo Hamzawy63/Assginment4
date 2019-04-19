@@ -42,20 +42,23 @@ public class Polynomial {
         }
         return "an Error occured this character is unavailable ";
     }
-    public String print(singlyLinkedList poly)
+    public String print(singlyLinkedList poly)  ///tested
     {
-        String representation = "";
+        String representation = " ";
         singlyLinkedList.singlyLinkedListNode tmp = poly.head;
         int redundantVariable = 0;
         while(tmp!=null)
         {
             Point termPoint  =(Point) (tmp.value);
-            representation.concat(Integer.toString(termPoint.x));
-            representation.concat("X^");
-            representation.concat(Integer.toString(termPoint.y));
+            representation = representation.concat(Integer.toString(termPoint.x));
+            representation = representation.concat("X^");
+            representation = representation.concat(Integer.toString(termPoint.y));
+
+
             if(redundantVariable !=poly.size()-1 )
-                representation.concat("X^");
+                representation=representation.concat("+");
             redundantVariable++;
+            tmp = tmp.next;
         }
         return representation;
     }
