@@ -11,19 +11,21 @@ public class Polynomial {
     {
         singlyLinkedList tmp = new singlyLinkedList();
         Point term = new Point();
-        for(int i =terms.length-1 ;i>=0;i++ ) // to order the linkedlist in descending order
+        for(int i =(terms.length-1) ;i>=0;i-- ) // to order the linkedlist in descending order
         {
             for(int j =0 ;j<terms[0].length ;j++ )
             {
                 term.x = terms[i][j] ;
-                term.y =  j;
+                term.y =  i;
+
+                if(poly == 'A')
+                    A.add(new Point(term));
+                else if (poly == 'B')
+                    B.add(new Point(term));
+                else if((poly == 'C'))
+                    C.add(new Point(term));
+
             }
-            if(poly == 'A')
-                A.add(term);
-            else if (poly == 'B')
-                B.add(term);
-            else if((poly == 'C'))
-                C.add(term);
 
         }
 

@@ -16,16 +16,15 @@ public class myMain {
         System.out.println(list.size());
         System.out.println(list.contains(120));
         System.out.println(list.get(2));
-        **/
-        Polynomial poly = new Polynomial();
-        singlyLinkedList list = new singlyLinkedList();
-        list.add(new Point(3,2));
-        list.add(new Point(4,1));
-        list.add(new Point(5,-1));
-        poly.A = list;
 
+         **/
+        int [][]  a  = {{5},{4},{3}};
+
+        Polynomial poly = new Polynomial();
+        poly.setPolynomial('A',a);
         System.out.println(poly.print('A'));
 
          }
+
 
 }
