@@ -59,3 +59,4 @@ float evaluatePolynomial(char poly, float value);
      */
     int[][] multiply(char poly1, char poly2);
 }
+
