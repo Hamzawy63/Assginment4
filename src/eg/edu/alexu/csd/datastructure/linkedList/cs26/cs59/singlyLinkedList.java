@@ -48,7 +48,7 @@ public class singlyLinkedList implements ILinkedList {
             singlyLinkedListNode tmp = head;
             for (int i = 0; i <= index; i++, tmp = tmp.next) {
                 if (i == index)
-                    return tmp.value; /// cheek this fuck
+                    return tmp ==null ? null : tmp.value; /// cheek this fuck
             }
         }
         return null; /// will never be accesed

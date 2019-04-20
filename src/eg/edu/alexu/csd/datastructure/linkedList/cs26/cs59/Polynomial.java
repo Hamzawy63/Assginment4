@@ -5,13 +5,39 @@ import java.awt.*;
 import static java.lang.Math.pow;
 
 public class Polynomial {
-    private singlyLinkedList  A = new singlyLinkedList();
-    private singlyLinkedList  B = new singlyLinkedList();
-    private  singlyLinkedList C = new singlyLinkedList();
+
+    /**
+     * We will store the presentation of polynomial (Which is linkedList ) in linked list of objects
+     * Each object contains the linked list and the character representing name of polynomial (A,B,C)
+     */
+    class Data
+    {
+        char X;
+        singlyLinkedList polynomial = new singlyLinkedList();
+        int[][] matrixRepresentation = new int[1][] ;
+        Data(char X)
+        {
+            this.X = X;
+        }
+    }
+    Data A = new Data('A');
+    Data B = new Data('B');
+    Data C = new Data('C');
+    Data R = new Data('R');
+
+    public singlyLinkedList fillDataArrayList()
+    {
+        singlyLinkedList dataArray = new singlyLinkedList();
+        dataArray.add(A);
+        dataArray.add(B);
+        dataArray.add(C);
+        dataArray.add(R);
+        return dataArray;
+    }
+    singlyLinkedList dataArray = fillDataArrayList();
 
     public void  setPolynomial(char poly, int[][] terms) /// not tested yet
     {
-        singlyLinkedList tmp = new singlyLinkedList();
         Point term = new Point();
         for(int i =(terms.length-1) ;i>=0;i-- ) // to order the linkedlist in descending order
         {
@@ -21,11 +47,11 @@ public class Polynomial {
                 term.y =  i;
 
                 if(poly == 'A')
-                    A.add(new Point(term));
+                    A.polynomial.add(new Point(term));
                 else if (poly == 'B')
-                    B.add(new Point(term));
+                    B.polynomial.add(new Point(term));
                 else if((poly == 'C'))
-                    C.add(new Point(term));
+                    C.polynomial.add(new Point(term));
 
             }
 
@@ -37,11 +63,11 @@ public class Polynomial {
         switch (poly)
         {
             case 'A':
-                return print(A);
+                return print(A.polynomial);
             case 'B':
-                return print(B);
+                return print(B.polynomial);
             case 'C':
-                return print(C);
+                return print(C.polynomial);
         }
         return "an Error occured this character is unavailable ";
     }
@@ -67,15 +93,16 @@ public class Polynomial {
     }
     public float evaluatePolynomial(char poly, float value) /// not tested yet
     {
-        if(poly == 'A')
-            return evaluatePolynomial(A,value);
-
-        else if (poly == 'B')
-            return evaluatePolynomial(B,value);
-
-
-        return evaluatePolynomial(C,value);
-
+        for(int i = 0;i<3;i++)
+        {
+            Data tmp = (Data)dataArray.get(i);
+            if(tmp.X == poly)
+            {
+               return evaluatePolynomial(tmp.polynomial,value);
+            }
+        }
+        System.out.print("Your character is not found");
+        return 0; //redundant
 
     }
     public float evaluatePolynomial(singlyLinkedList poly, float value) /// method overloading
@@ -97,15 +124,42 @@ public class Polynomial {
     }
     int[][] add(char poly1, char poly2)
     {
+        int[][] x = (((Data)(dataArray.get(0))).matrixRepresentation);
+        int[][] y =(((Data)(dataArray.get(0))).matrixRepresentation);
+        for(int i =0 ;i<3;i++ )
+        {
+            Data tmp  = (Data)dataArray.get(i);
+            if(tmp.X == poly1) {
+                tmp.matrixRepresentation = fillOnto2D(tmp.polynomial);
+                x = tmp.matrixRepresentation;
+            }
+            if(tmp.X == poly2){
+                tmp.matrixRepresentation  = fillOnto2D(tmp.polynomial);
+                y = tmp.matrixRepresentation;
+            }
 
-        return new int[2][2];
+        }
+        return  add(x,y);
+
     }
-    int[][] add(singlyLinkedList poly1, singlyLinkedList poly2)
-    {
-        return new int[2][2];
+
+    int[][] add(int[][] poly1, int[][] poly2)    {
+        int biggerColumn     = poly1[0].length     >  poly2[0].length ? poly1[0].length:poly2[0].length;
+        int smallerColumn    = poly1[0].length     <  poly2[0].length ? poly1[0].length:poly2[0].length;
+        int[][] result = new int[1][biggerColumn];
+        for(int i = 0 ;i<smallerColumn ;i++)
+        {
+            result[0][i] = poly1[0][i]+poly2[0][i];
+        }
+        // Fill the rest of the bigger array into fucking result
+        for(int i = smallerColumn ;i<biggerColumn ;i++)
+        {
+            result[0][i] =poly1.length     >  poly2.length ? poly1[0][i]:poly2[0][i];
+        }
+        return result;
     }
     public int[][]  fillOnto2D(singlyLinkedList src)
-    {
+     {
         int[][] dest =new int[1][sizeOfArr(src)];
         singlyLinkedList.singlyLinkedListNode ptr  = src.head;
         Point term;
@@ -132,5 +186,19 @@ public class Polynomial {
         }
         return size+1;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
